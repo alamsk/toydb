@@ -1,5 +1,4 @@
-src/BiswarupAdhikari/ToyDB/Cache/*
-/src/BiswarupAdhikari/ToyDB/databases/*
+/src/BiswarupAdhikari/ToyDB/Storage
 /vendor
 composer.phar
 composer.lock
