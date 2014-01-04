@@ -18,7 +18,7 @@ class DataBase extends Model
 			$this->display( "Login Failed");		
 		}
 		if(isset($dbName)){
-			$this->dbName=$dbname;
+			$this->dbName=$dbName;
 		}
 		$this->select=new Select($this->dbName);
 	}
@@ -28,6 +28,14 @@ class DataBase extends Model
 			$this->create($this->dbName);
 		}
 		$this->select->dbName=$this->dbName;
+	}
+	public function drop($dbName=null){
+		if(isset($dbName)){
+			$this->dbName=$dbName;
+		}	
+		$filesystem=new FileSystem();
+		$filesystem->rrmdir($this->config->dbPath.'/'.$this->dbName);
+		$this->dbName=null;		
 	}
 	public function create($dbName=null)
 	{
