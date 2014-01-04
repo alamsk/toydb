@@ -1,10 +1,5 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors',1);
-require_once __DIR__ . '/../../vendor/' . '/autoload.php';
-use BiswarupAdhikari\PJD\PJD;
-$db=new PJD("root",123456);
-$db->database->selectDB('blog');
+require_once __DIR__ . '/config.php';
 $db->database->select->orderBy('id','desc');
 $db->database->select->limit(0,10);
 $posts=$db->database->select->all('posts');

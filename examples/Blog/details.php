@@ -1,9 +1,5 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors',1);
-require_once __DIR__ . '/../../vendor/' . '/autoload.php';
-use BiswarupAdhikari\PJD\PJD;
-$db=new PJD("root",123456);
+require_once __DIR__ . '/config.php';
 $db->database->selectDB('blog');
 $id=intval($_GET['id']);
 $post=$db->database->select->byId('posts','*',$id);
