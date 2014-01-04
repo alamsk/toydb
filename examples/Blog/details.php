@@ -1,8 +1,7 @@
 <?php
 require_once __DIR__ . '/config.php';
-$db->database->selectDB('blog');
 $id=intval($_GET['id']);
-$post=$db->database->select->byId('posts','*',$id);
+$post=$db->select->byId('posts','*',$id);
 ?>
 <ul>
 	<li>

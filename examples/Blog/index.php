@@ -1,8 +1,8 @@
 <?php
 require_once __DIR__ . '/config.php';
-$db->database->select->orderBy('id','desc');
-$db->database->select->limit(0,10);
-$posts=$db->database->select->all('posts');
+$db->select->orderBy('id','desc');
+$db->select->limit(0,10);
+$posts=$db->select->all('posts');
 ?>
 <ul>
 	<?php foreach($posts as $p){ ?>

@@ -1,5 +1,5 @@
 <?php
-namespace BiswarupAdhikari\ToyDB\Models;
+namespace BiswarupAdhikari\ToyDB;
 use BiswarupAdhikari\ToyDB\Models\Model;
 use BiswarupAdhikari\ToyDB\Models\FileSystem;
 use BiswarupAdhikari\ToyDB\Models\Auth;

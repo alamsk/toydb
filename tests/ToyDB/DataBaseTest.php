@@ -1,6 +1,5 @@
 <?php
-use BiswarupAdhikari\ToyDB\ToyDB;
-use BiswarupAdhikari\ToyDB\Models\DataBase;
+use BiswarupAdhikari\ToyDB\DataBase;
 use BiswarupAdhikari\ToyDB\Config\Config;
 class DataBaseTest extends PHPUnit_Framework_TestCase
 {
