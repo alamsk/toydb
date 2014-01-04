@@ -1,6 +1,7 @@
 {
     "name": "biswarupadhikari/toydb",
     "description": "PHP JSON DataBase by Biswarup Adhikari",
+    "version":"1.0.0",
     "license": "MIT",
     "authors": [
         {
