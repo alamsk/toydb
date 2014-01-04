@@ -119,4 +119,4 @@ echo'</pre>';
 
 ## License
 
-Faker is released under the MIT Licence. See the bundled LICENSE file for details.
+ToyDB is released under the MIT Licence. See the bundled LICENSE file for details.
