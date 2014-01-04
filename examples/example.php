@@ -23,6 +23,7 @@ $db->selectDB('blog');
 echo '<pre>';
 $db->select->limit=0;
 $db->select->orderBy="id desc";
+$db->select->where("`id`==1 || `id`==3");
 $rows=$db->select->all('posts','*');
 print_r($rows);
 echo '</pre>';

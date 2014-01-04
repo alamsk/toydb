@@ -72,6 +72,42 @@ print_r($rows);
 echo'</pre>';
 ```
 
+## How to Use where Condition
+
+
+```php
+<?php
+// require the ToyDB autoloader
+require_once '/path/to/autoload.php'; 
+use BiswarupAdhikari\ToyDB\DataBase;
+//Create a ToyDB Instance 
+$db=new DataBase("root",123456);
+//Select DataBase if not exist it will create automatically
+$db->selectDB("mydb");
+//Select user whose username='biswarup' and Password='mypass'
+$db->select->where("`username`=='biswarup' && `password`=='mypass'");
+$rows=$db->select->all('users2','id,fname,email');
+echo '<pre>';
+print_r($rows);
+echo'</pre>';
+//Clear Previous used Filters
+$db->select->clear();
+//Select Users whose id greate than 15
+$db->select->where("`id`>15");
+$rows=$db->select->all('users2','id,fname,email');
+echo '<pre>';
+print_r($rows);
+echo'</pre>';
+//Clear Previous used Filters
+$db->select->clear();
+//Select Users whose id greate than 15 and status equal to 2 or 1
+$db->select->where("`id`>15 && (`status`==2 || `status`==1)");
+$rows=$db->select->all('users2','id,fname,email');
+echo '<pre>';
+print_r($rows);
+echo'</pre>';
+```
+
 ## Select Record Using Limit and Offset
 
 ```php
