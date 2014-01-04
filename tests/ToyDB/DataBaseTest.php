@@ -10,9 +10,9 @@ class DataBaseTest extends PHPUnit_Framework_TestCase
 		$username=$config->username;
 		$password=$config->password;
 		$dbName="testdb";
-		$database=new DataBase($username,$password);
-		$database->drop($dbName);
-		$database->drop('testdb2');
+		$db=new DataBase($username,$password);
+		$db->drop($dbName);
+		$db->drop('testdb2');
 
 	}
 	public function testCreateDataBase()
@@ -20,11 +20,11 @@ class DataBaseTest extends PHPUnit_Framework_TestCase
 		$config=new Config();
 		$username=$config->username;
 		$password=$config->password;
-		$database=new DataBase($username,$password);
+		$db=new DataBase($username,$password);
 		$dbName="testdb";
-		$database->create($dbName);
+		$db->create($dbName);
 		$this->assertTrue(file_exists($config->dbPath.'/'.$dbName),"Create DataBase Test");
-		$this->assertEquals($database->dbName,$dbName,"DataBase Setting Up Tests");
+		$this->assertEquals($db->dbName,$dbName,"DataBase Setting Up Tests");
 
 	}
 	/**
@@ -37,9 +37,9 @@ class DataBaseTest extends PHPUnit_Framework_TestCase
 		$username=$config->username;
 		$password=$config->password;
 		$dbName="testdb";
-		$database=new DataBase($username,$password,$dbName);
-		$database->selectDB('testdb2');
-		$this->assertEquals($database->dbName,'testdb2',"Default DB in Constructir");
+		$db=new DataBase($username,$password,$dbName);
+		$db->selectDB('testdb2');
+		$this->assertEquals($db->dbName,'testdb2',"Default DB in Constructir");
 
 	}
 	/**
@@ -52,8 +52,8 @@ class DataBaseTest extends PHPUnit_Framework_TestCase
 		$username=$config->username;
 		$password=$config->password;
 		$dbName="testdb";
-		$database=new DataBase($username,$password,$dbName);
-		$this->assertEquals($database->dbName,$dbName,"Default DB in Constructir");
+		$db=new DataBase($username,$password,$dbName);
+		$this->assertEquals($db->dbName,$dbName,"Default DB in Constructir");
 	}
 	/**
 	 * Drop Delete DataBase Test
@@ -64,11 +64,11 @@ class DataBaseTest extends PHPUnit_Framework_TestCase
 		$config=new Config();
 		$username=$config->username;
 		$password=$config->password;
-		$database=new DataBase($username,$password);
+		$db=new DataBase($username,$password);
 		$dbName="testdb";
-		$database->create($dbName);
-		$database->drop($dbName);
+		$db->create($dbName);
+		$db->drop($dbName);
 		$this->assertFalse(file_exists($config->dbPath.'/'.$dbName),"Drop DataBase Test");
-		$this->assertNull($database->dbName);
+		$this->assertNull($db->dbName);
 	}
 }

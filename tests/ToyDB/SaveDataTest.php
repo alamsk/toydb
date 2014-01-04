@@ -3,11 +3,7 @@ use BiswarupAdhikari\ToyDB\ToyDB;
 use BiswarupAdhikari\ToyDB\Models\SaveData;
 class SaveDataTest extends PHPUnit_Framework_TestCase
 {
-	protected function setup()
-	{
-		$this->db=new ToyDB("root",123456);		
-		$this->db->database->selectDB("testdb");
-	}
+	
 	public function testInsertData()
 	{
 		
@@ -17,11 +13,18 @@ class SaveDataTest extends PHPUnit_Framework_TestCase
 
 	public function testAutoIncrementID()
 	{
-		
-	}
-
-	protected function tearDown()
-	{
-		$this->db->database->drop('testdb');
+		$db=new ToyDB("root",123456);
+		$db->database->drop('testdb');		
+		$db->database->selectDB("testdb");
+		for($i=0;$i<5;$i++){
+			$user=array(
+				"name"=>"User Name ".$i,
+				"username"=>"username".$i,
+				"password"=>sha1(microtime())
+			);
+			$db->database->save('users',$user);
+		}
+		$this->assertEquals($i,$db->database->autoId('users'));
+		$db->database->drop('testdb');
 	}
 }

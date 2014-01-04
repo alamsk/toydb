@@ -51,7 +51,16 @@ class DataBase extends Model
 		$filesystem->mkdir($this->config->dbPath.'/'.$this->dbName);			
 		$this->display($this->dbName." Database Created");
 	}
-
+	public function autoId($tblName)
+	{
+		$this->tblName=$tblName;
+		$tablePath=$this->config->dbPath.'/'.$this->dbName.'/'.$this->tblName;
+		$tableStructurePath=$tablePath.'/structure.json';		
+		$filesystem=new FileSystem();
+		$data=$filesystem->readContent($tableStructurePath);
+		$tableStructure=json_decode($data);		
+		return intval($tableStructure->auto_id);
+	}
 	public function save($tblName,$obj){
 		$this->tblName=$tblName;
 		new SaveData($this->dbName,$this->tblName,$obj);
