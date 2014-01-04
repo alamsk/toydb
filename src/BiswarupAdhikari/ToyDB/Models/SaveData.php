@@ -7,6 +7,7 @@ class SaveData extends Model
 	private $dbName;
 	private $tblName;
 	private $data;
+	
 	function __construct($dbName,$tblName,$data){		
 		parent::__construct();
 		$this->dbName=$dbName;

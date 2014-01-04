@@ -19,16 +19,24 @@ $db->database->selectDB("akash");
 // 	);
 // 	$db->database->save('users',$row);
 // }
-$db->database->select->cache('200-250');
-$db->database->select->where("`id`>200 && `id`<250");
+$db->database->select->cache('200250');
+$db->database->select->where("`id`==200 || `id`==250");
 $rows=$db->database->select->all('users');
 echo '<pre>';
 print_r($rows);
 echo '</pre>';
-
+$bm->stop();
+$bm->start();
+echo '<hr>';
+$db->database->select->clear();
+$db->database->select->limit(0,6);
+$db->database->select->cache('zero-to-6');
+$rows=$db->database->select->all('users','id,name');
+echo '<pre>';
+print_r($rows);
+echo '</pre>';
 $bm->stop();
 $bm->results();	
-echo '<hr>';
 // $db->database->select->where("`username`=='samir' || `username`=='alam'");
 // $rows=$db->database->select->byId('users','*',array(1,3));
 // echo '<pre>';

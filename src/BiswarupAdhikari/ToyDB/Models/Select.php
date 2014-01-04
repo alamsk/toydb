@@ -18,6 +18,15 @@ class Select extends Model
 		$this->dbName=$dbName;
 
 	}
+	public function clear()
+	{
+		$this->start=0;
+		$this->limit=0;
+		$this->orderBy="id ASC";
+		$this->where=null;
+		$this->cache=null;
+
+	}
 	public function all($tblName,$fields='*',$condition=null){	
 		if(isset($this->cache)){
 			$c=new Cache;

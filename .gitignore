@@ -1,4 +1,4 @@
-/Cache
+src/BiswarupAdhikari/ToyDB/Cache/*
 /src/BiswarupAdhikari/ToyDB/databases/*
 /vendor
 composer.phar
