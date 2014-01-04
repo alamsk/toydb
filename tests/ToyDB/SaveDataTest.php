@@ -1,5 +1,5 @@
 <?php
-use BiswarupAdhikari\ToyDB\ToyDB;
+use BiswarupAdhikari\ToyDB\DataBase;
 use BiswarupAdhikari\ToyDB\Models\SaveData;
 class SaveDataTest extends PHPUnit_Framework_TestCase
 {
@@ -13,18 +13,18 @@ class SaveDataTest extends PHPUnit_Framework_TestCase
 
 	public function testAutoIncrementID()
 	{
-		$db=new ToyDB("root",123456);
-		$db->database->drop('testdb');		
-		$db->database->selectDB("testdb");
+		$db=new DataBase("root",123456);
+		$db->drop('testdb');		
+		$db->selectDB("testdb");
 		for($i=0;$i<5;$i++){
 			$user=array(
 				"name"=>"User Name ".$i,
 				"username"=>"username".$i,
 				"password"=>sha1(microtime())
 			);
-			$db->database->save('users',$user);
+			$db->save('users',$user);
 		}
-		$this->assertEquals($i,$db->database->autoId('users'));
-		$db->database->drop('testdb');
+		$this->assertEquals($i,$db->autoId('users'));
+		$db->drop('testdb');
 	}
 }

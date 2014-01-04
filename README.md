@@ -8,11 +8,11 @@ ToyDB is a PHP based DataBase.Please Do not Use for Production Environment. I ha
 <?php
 // require the ToyDB autoloader
 require_once '/path/to/autoload.php'; 
-use BiswarupAdhikari\ToyDB\ToyDB;
+use BiswarupAdhikari\ToyDB\DataBase;
 //Create a ToyDB Instance 
-$db=new ToyDB("root",123456);
+$db=new DataBase("root",123456);
 //Select DataBase if not exist it will create automatically
-$db->database->selectDB("mydb");
+$db->selectDB("mydb");
 ```
 
 ## Insert Data In To DataBase Table
@@ -21,18 +21,18 @@ $db->database->selectDB("mydb");
 <?php
 // require the ToyDB autoloader
 require_once '/path/to/autoload.php'; 
-use BiswarupAdhikari\ToyDB\ToyDB;
+use BiswarupAdhikari\ToyDB\DataBase;
 //Create a ToyDB Instance 
-$db=new ToyDB("root",123456);
+$db=new DataBase("root",123456);
 //Select DataBase if not exist it will create automatically
-$db->database->selectDB("mydb");
+$db->selectDB("mydb");
 //Data Array
 $product=array(
     "name"=>"Product One ",
     "price"=>3.75
 );
 //Insert Data to my_products table , no need to create table
-$db->database->save('my_products',$product);
+$db->save('my_products',$product);
 ```
 
 ## Select All Records From a Database Table
@@ -42,12 +42,12 @@ $db->database->save('my_products',$product);
 <?php
 // require the ToyDB autoloader
 require_once '/path/to/autoload.php'; 
-use BiswarupAdhikari\ToyDB\ToyDB;
+use BiswarupAdhikari\ToyDB\DataBase;
 //Create a ToyDB Instance 
-$db=new ToyDB("root",123456);
+$db=new DataBase("root",123456);
 //Select DataBase if not exist it will create automatically
-$db->database->selectDB("mydb");
-$rows=$db->database->select->all('my_products');
+$db->selectDB("mydb");
+$rows=$db->select->all('my_products');
 echo '<pre>';
 print_r($rows);
 echo'</pre>';
@@ -60,13 +60,13 @@ echo'</pre>';
 <?php
 // require the ToyDB autoloader
 require_once '/path/to/autoload.php'; 
-use BiswarupAdhikari\ToyDB\ToyDB;
+use BiswarupAdhikari\ToyDB\DataBase;
 //Create a ToyDB Instance 
-$db=new ToyDB("root",123456);
+$db=new DataBase("root",123456);
 //Select DataBase if not exist it will create automatically
-$db->database->selectDB("mydb");
+$db->selectDB("mydb");
 $my_product_ids=array(122,182,162,192,125,1255,3569);
-$rows=$db->database->select->byId('users2','id,fname,email',$my_product_ids);
+$rows=$db->select->byId('users2','id,fname,email',$my_product_ids);
 echo '<pre>';
 print_r($rows);
 echo'</pre>';
@@ -78,16 +78,16 @@ echo'</pre>';
 <?php
 // require the ToyDB autoloader
 require_once '/path/to/autoload.php'; 
-use BiswarupAdhikari\ToyDB\ToyDB;
+use BiswarupAdhikari\ToyDB\DataBase;
 //Create a ToyDB Instance 
-$db=new ToyDB("root",123456);
+$db=new DataBase("root",123456);
 //Select DataBase if not exist it will create automatically
-$db->database->selectDB("mydb");
+$db->selectDB("mydb");
 //Starting position
-$db->database->select->start=6;
+$db->select->start=6;
 //How many record you want
-$db->database->select->limit=10;
-$rows=$db->database->select->all('my_products');
+$db->select->limit=10;
+$rows=$db->select->all('my_products');
 echo '<pre>';
 print_r($rows);
 echo'</pre>';
@@ -100,18 +100,18 @@ echo'</pre>';
 <?php
 // require the ToyDB autoloader
 require_once '/path/to/autoload.php'; 
-use BiswarupAdhikari\ToyDB\ToyDB;
+use BiswarupAdhikari\ToyDB\DataBase;
 //Create a ToyDB Instance 
-$db=new ToyDB("root",123456);
+$db=new DataBase("root",123456);
 //Select DataBase if not exist it will create automatically
-$db->database->selectDB("mydb");
+$db->selectDB("mydb");
 //Order By ASC or DESC
-$db->database->select->orderBy="id DESC";
+$db->select->orderBy="id DESC";
 //Starting position
-$db->database->select->start=6;
+$db->select->start=6;
 //How many record you want
-$db->database->select->limit=10;
-$rows=$db->database->select->all('my_products');
+$db->select->limit=10;
+$rows=$db->select->all('my_products');
 echo '<pre>';
 print_r($rows);
 echo'</pre>';

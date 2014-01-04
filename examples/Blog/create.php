@@ -4,7 +4,7 @@ if(isset($_POST['create_post'])){
 	$post=array();
 	$post['title']=$_POST['title'];
 	$post['content']=$_POST['content'];
-	$db->database->save('posts',$post);
+	$db->save('posts',$post);
 	header("LOCATION:index.php");
 }
 ?>
