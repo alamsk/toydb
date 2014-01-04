@@ -1,0 +1,5 @@
+/src/BiswarupAdhikari/ToyDB/databases/*
+/vendor
+composer.phar
+composer.lock
+.DS_Store
