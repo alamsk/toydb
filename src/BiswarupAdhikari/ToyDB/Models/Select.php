@@ -10,6 +10,7 @@ class Select extends Model
 	public $limit=0;
 	public $start=0;
 	public $orderBy="id ASC";
+	public $where=null;
 	function __construct($dbName){		
 		parent::__construct();
 		$this->dbName=$dbName;
@@ -39,7 +40,7 @@ class Select extends Model
 		$this->data=$this->readData();
 
 		$this->filterData();
-
+		$this->applyCondition();
 		
 
 		$rows=array();
@@ -88,7 +89,21 @@ class Select extends Model
 	}
 
 	public function applyCondition(){
-
+		if(isset($this->where)){
+			$pattern='#`(.*?)`#is';
+			$rows=array();
+			foreach($this->data as $d){
+				$result=false;
+				$row=(ARRAY)$d;
+				$replacement='$row["$1"]';
+				$condition='if('.preg_replace($pattern, $replacement, $this->where).'){ $result=true;}';
+				eval($condition);				
+				if((bool)$result){
+					array_push($rows,(object)$row);
+				}
+			}
+			$this->data=$rows;
+		}
 	}
 	public function sortResults(){
 		$tmp=explode(' ',$this->orderBy);
@@ -140,5 +155,9 @@ class Select extends Model
 	}
 	public function fields($fields){
 		$this->fields=$fields;
+	}
+	public function where($where)
+	{
+		$this->where=$where;
 	}
 }
