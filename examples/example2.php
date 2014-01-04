@@ -3,34 +3,34 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 require_once __DIR__ . '/../vendor/' . '/autoload.php';
 use BiswarupAdhikari\ToyDB\ToyDB;
+use BiswarupAdhikari\ToyDB\Models\Benchmark;
+$bm=new Benchmark;
+$bm->start();
 $db=new ToyDB("root",123456);
 echo "<h1>My DB</h1>";
 $db->database->selectDB("akash");
-// $row=array(
-// 	"username"=>"biswarup",
-// 	"password"=>"123456",
-// 	"block"=>2
-// );
-// $db->database->save('users',$row);
-// $row=array(
-// 	"username"=>"alam",
-// 	"password"=>"95142",
-// 	"block"=>3
-// );
-// $db->database->save('users',$row);
-// $row=array(
-// 	"username"=>"samir",
-// 	"password"=>"654321",
-// 	"block"=>0
-// );
-// $db->database->save('users',$row);
+// $faker = Faker\Factory::create();
+// for($i=0;$i<25000;$i++)
+// {
+// 	$row=array(
+// 		"name"=>$faker->name,
+// 		"username"=>$faker->username,
+// 		"email"=>$faker->email
+// 	);
+// 	$db->database->save('users',$row);
+// }
+$db->database->select->cache('200-250');
+$db->database->select->where("`id`>200 && `id`<250");
 $rows=$db->database->select->all('users');
 echo '<pre>';
 print_r($rows);
 echo '</pre>';
+
+$bm->stop();
+$bm->results();	
 echo '<hr>';
-$db->database->select->where("`username`=='samir' || `username`=='alam'");
-$rows=$db->database->select->byId('users','*',array(1,3));
-echo '<pre>';
-print_r($rows);
-echo '</pre>';
+// $db->database->select->where("`username`=='samir' || `username`=='alam'");
+// $rows=$db->database->select->byId('users','*',array(1,3));
+// echo '<pre>';
+// print_r($rows);
+// echo '</pre>';

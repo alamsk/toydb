@@ -66,4 +66,9 @@ class FileSystem extends Model
 			rmdir($dir);
 		}
 	}
+
+	public function deleteFile($file)
+	{
+		@unlink($file);
+	}
 }

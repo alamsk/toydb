@@ -2,6 +2,7 @@
 namespace BiswarupAdhikari\ToyDB\Models;
 use BiswarupAdhikari\ToyDB\Models\Model;
 use BiswarupAdhikari\ToyDB\Models\FileSystem;
+use BiswarupAdhikari\ToyDB\Models\Cache;
 class Select extends Model
 {
 	public $dbName;
@@ -11,12 +12,19 @@ class Select extends Model
 	public $start=0;
 	public $orderBy="id ASC";
 	public $where=null;
+	public $cache=null;
 	function __construct($dbName){		
 		parent::__construct();
 		$this->dbName=$dbName;
 
 	}
 	public function all($tblName,$fields='*',$condition=null){	
+		if(isset($this->cache)){
+			$c=new Cache;
+			if($data=$c->get($this->cache)){
+				return $data;
+			} 
+		}
 		$this->tblName=$tblName;
 		$this->fields=$fields;
 
@@ -27,10 +35,20 @@ class Select extends Model
 		$this->applyCondition();
 		$this->sortResults();
 		$this->applyLimitOffset();
+		if(isset($this->cache)){
+			$c=new Cache;
+			$c->store($this->cache,$this->data);
+		}
 		return $this->data;
 	}
 
 	public function byId($tblName,$fields='*',$ids){
+		if(isset($this->cache)){
+			$c=new Cache;
+			if($data=$c->get($this->cache)){
+				return $data;
+			} 
+		}
 		if(!is_array($ids)){
 			$ids=array($ids);
 		}
@@ -52,11 +70,15 @@ class Select extends Model
 		$this->data=$rows;
 		$this->sortResults();
 		$this->applyLimitOffset();
-		if(count($ids)>1){
-			return $this->data;
-		}else{
-			return $this->data[0];
-		}		
+
+		if(count($ids)==1){
+			$this->data=$this->data[0];
+		}
+		if(isset($this->cache)){
+				$c=new Cache;
+				$c->store($this->cache,$this->data);
+		}	
+		return $this->data;	
 	}
 	public function readData(){
 		$filesystem=new FileSystem();
@@ -159,5 +181,10 @@ class Select extends Model
 	public function where($where)
 	{
 		$this->where=$where;
+	}
+
+	public function cache($key)
+	{
+		$this->cache=$key;
 	}
 }
