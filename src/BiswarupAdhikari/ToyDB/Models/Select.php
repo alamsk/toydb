@@ -133,7 +133,7 @@ class Select extends Model
 				$row=(ARRAY)$d;
 				$replacement='$row["$1"]';
 				$condition='if('.preg_replace($pattern, $replacement, $this->where).'){ $result=true;}';
-				eval($condition);				
+				@eval($condition);				
 				if((bool)$result){
 					array_push($rows,(object)$row);
 				}
