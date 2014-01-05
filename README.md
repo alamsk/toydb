@@ -2,7 +2,7 @@
 
 ToyDB is a PHP based DataBase.Please Do not Use for Production Environment. I have Created this App for FUN.
 
-[![Latest Stable Version](https://poser.pugx.org/biswarupadhikari/toydb/v/stable.png)](https://packagist.org/packages/biswarupadhikari/toydb)  [![Total Downloads](https://poser.pugx.org/biswarupadhikari/toydb/downloads.png)](https://packagist.org/packages/biswarupadhikari/toydb)
+[![Latest Stable Version](https://poser.pugx.org/biswarupadhikari/toydb/v/stable.png)](https://packagist.org/packages/biswarupadhikari/toydb)  [![Total Downloads](https://poser.pugx.org/biswarupadhikari/toydb/downloads.png)](https://packagist.org/packages/biswarupadhikari/toydb)  [![Build Status](https://travis-ci.org/adidac/toydb.png?branch=master)](https://travis-ci.org/adidac/toydb)
 
 ## Basic Usage
 
