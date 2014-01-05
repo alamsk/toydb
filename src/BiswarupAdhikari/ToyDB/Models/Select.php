@@ -106,7 +106,8 @@ class Select extends Model
 		$rows=array();
 		foreach($this->data as $d){
 			$d=(ARRAY)$d;
-			$key=array_keys($d)[0];
+			$keys=array_keys($d);
+			$key=$keys[0];
 			$row=$d[$key];
 			$row['id']=$key;
 			if($this->fields!="*"){
