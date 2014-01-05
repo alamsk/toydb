@@ -61,6 +61,11 @@ class DataBase extends Model
 		$tableStructure=json_decode($data);		
 		return intval($tableStructure->auto_id);
 	}
+	public function select($fields='*')
+	{
+		$this->select->fields=$fields;
+		return $this->select;
+	}
 	public function save($tblName,$obj){
 		$this->tblName=$tblName;
 		new SaveData($this->dbName,$this->tblName,$obj);

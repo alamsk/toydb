@@ -21,10 +21,15 @@ $db->selectDB('blog');
 // $data='['.$db->selectAll('users2').']';
 
 echo '<pre>';
-$db->select->limit=0;
-$db->select->orderBy="id desc";
-$db->select->where("`id`==1 || `id`==3");
-$rows=$db->select->all('posts','*');
+// $db->select->limit=0;
+// $db->select->orderBy="id desc";
+// $db->select->where("`id`==1 || `id`==3");
+// $rows=$db->select->all('posts','*');
+$rows=$db->select('id,title')->from('posts')
+			->where('`id`>2')
+			->limit(1,2)
+			->orderBy('title DESC')
+			->get();
 print_r($rows);
 echo '</pre>';
 $bm->stop();

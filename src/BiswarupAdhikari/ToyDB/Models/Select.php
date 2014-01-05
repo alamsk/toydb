@@ -13,7 +13,8 @@ class Select extends Model
 	public $orderBy="id ASC";
 	public $where=null;
 	public $cache=null;
-	function __construct($dbName){		
+	public $fields='*';
+	function __construct($dbName="*"){		
 		parent::__construct();
 		$this->dbName=$dbName;
 
@@ -26,6 +27,10 @@ class Select extends Model
 		$this->where=null;
 		$this->cache=null;
 
+	}
+	public function get()
+	{
+		return $this->all($this->tblName,$this->fields,$this->where);
 	}
 	public function all($tblName,$fields='*',$condition=null){	
 		if(isset($this->cache)){
@@ -178,22 +183,32 @@ class Select extends Model
 
 	public function orderBy($or,$dir="asc"){
 		$this->orderBy=$or.' '.$dir;
+		return $this;
 	}
 
 	public function limit($start,$limit){
 		$this->start=$start;
 		$this->limit=$limit;
+		return $this;
 	}
-	public function fields($fields){
+	public function fields($fields='*'){
 		$this->fields=$fields;
+		return $this;
 	}
 	public function where($where)
 	{
 		$this->where=$where;
+		return $this;
 	}
 
 	public function cache($key)
 	{
 		$this->cache=$key;
+		return $this;
+	}
+	public function from($tblName)
+	{
+		$this->tblName=$tblName;
+		return $this;
 	}
 }

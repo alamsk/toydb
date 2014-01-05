@@ -153,6 +153,29 @@ print_r($rows);
 echo'</pre>';
 ```
 
+## New Query Technique
+
+
+```php
+<?php
+// require the ToyDB autoloader
+require_once '/path/to/autoload.php'; 
+use BiswarupAdhikari\ToyDB\DataBase;
+//Create a ToyDB Instance 
+$db=new DataBase("root",123456);
+//Select DataBase if not exist it will create automatically
+$db->selectDB("mydb");
+//List All Products Whose price greater than 2
+$rows=$db->select('id,product_name,price')
+			->from('my_products')
+			->where('`price`>2')
+			->limit(1,2)
+			->orderBy('price ASC')
+			->get();
+echo '<pre>';
+print_r($rows);
+echo'</pre>';
+```
 ## License
 
 ToyDB is released under the MIT Licence. See the bundled LICENSE file for details.
