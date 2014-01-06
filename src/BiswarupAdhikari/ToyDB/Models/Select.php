@@ -32,6 +32,11 @@ class Select extends Model
 	{
 		return $this->all($this->tblName,$this->fields,$this->where);
 	}
+	public function first()
+	{
+	  	$rows =  $this->all($this->tblName,$this->fields,$this->where);
+	  	return $rows[0];
+	}
 	public function all($tblName,$fields='*',$condition=null){	
 		if(isset($this->cache)){
 			$c=new Cache;

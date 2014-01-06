@@ -178,6 +178,27 @@ echo '<pre>';
 print_r($rows);
 echo'</pre>';
 ```
+
+## Retrieving A Single Row From A Table
+
+```php
+<?php
+// require the ToyDB autoloader
+require_once '/path/to/autoload.php'; 
+use BiswarupAdhikari\ToyDB\DataBase;
+//Create a ToyDB Instance 
+$db=new DataBase("root",123456);
+//Select DataBase if not exist it will create automatically
+$db->selectDB("mydb");
+//List All Products Whose price greater than 2
+$row=$db->select('id,product_name,price')
+			->from('my_products')
+			->where('`id`==2')
+			->first();
+echo '<pre>';
+print_r($row);
+echo'</pre>';
+```
 ## License
 
 ToyDB is released under the MIT Licence. See the bundled LICENSE file for details.
